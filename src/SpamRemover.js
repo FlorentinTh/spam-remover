@@ -213,11 +213,13 @@ class SpamRemover {
   async run() {
     const spams = await this.#getEmails({ label: 'spam', q: 'in:spam' });
 
-    if (spams.length > 0) {
-      await this.#logSpamAddresses(spams, { label: 'spam' });
-      await this.#deleteEmails(spams, { label: 'spam' });
+    if (!(process.env.NODE_ENV === 'test')) {
+      if (spams.length > 0) {
+        await this.#logSpamAddresses(spams, { label: 'spam' });
+        await this.#deleteEmails(spams, { label: 'spam' });
+      }
+      await this.#summary.sendSummary();
     }
-    await this.#summary.sendSummary();
 
     process.exit(0);
   }
