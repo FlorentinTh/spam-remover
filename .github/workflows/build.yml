@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
+    env:
+      TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
     strategy:
       matrix:
         os:
@@ -27,8 +29,6 @@ jobs:
 
       - name: Setup node ${{ matrix.node-version }} on ${{ matrix.os }} (${{ matrix.architecture }})
         uses: actions/setup-node@v2
-        env:
-          TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
         with:
           node-version: ${{ matrix.node-version }}
           architecture: ${{ matrix.architecture }}
