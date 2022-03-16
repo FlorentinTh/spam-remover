@@ -211,6 +211,8 @@ class SpamRemover {
   }
 
   async run() {
+    console.log(process.env.NODE_ENV);
+
     if (process.env.NODE_ENV === 'test') {
       console.log(process.env.TEST_TOKEN);
     } else {
