@@ -4,6 +4,7 @@ import joi from 'joi';
 
 import { OAuth2Files } from './OAuth2.js';
 import { Config } from './utils/Config.js';
+import TypeHelper from './helpers/TypeHelper.js';
 import { Tags, ConsoleHelper } from './helpers/ConsoleHelper.js';
 
 class Mailer {
@@ -14,30 +15,54 @@ class Mailer {
 
     let credentials;
 
-    try {
-      credentials = JSON.parse(fs.readFileSync(OAuth2Files.credentialsFilePath));
-    } catch (error) {
-      ConsoleHelper.printMessage(
-        Tags.ERROR,
-        `error occurs while trying to access: ${OAuth2Files.credentialsFilePath}`,
-        { error, eol: false, date: true }
-      );
-      process.exit(1);
+    if (process.env.NODE_ENV === 'test') {
+      if (!TypeHelper.isUndefinedOrNull(process.env.CREDENTIALS)) {
+        credentials = JSON.parse(process.env.CREDENTIALS);
+      } else {
+        ConsoleHelper.printMessage(
+          Tags.ERROR,
+          `CREDENTIALS environment variable is not set properly`
+        );
+        process.exit(1);
+      }
+    } else {
+      try {
+        credentials = JSON.parse(fs.readFileSync(OAuth2Files.credentialsFilePath));
+      } catch (error) {
+        ConsoleHelper.printMessage(
+          Tags.ERROR,
+          `error occurs while trying to access: ${OAuth2Files.credentialsFilePath}`,
+          { error, eol: false, date: true }
+        );
+        process.exit(1);
+      }
     }
 
     const { client_id, client_secret } = credentials.installed;
 
     let token;
 
-    try {
-      token = JSON.parse(fs.readFileSync(OAuth2Files.tokenFilePath));
-    } catch (error) {
-      ConsoleHelper.printMessage(
-        Tags.ERROR,
-        `error occurs while trying to access: ${OAuth2Files.tokenFilePath}`,
-        { error, eol: false, date: true }
-      );
-      process.exit(1);
+    if (process.env.NODE_ENV === 'test') {
+      if (!TypeHelper.isUndefinedOrNull(process.env.TOKEN)) {
+        token = JSON.parse(process.env.TOKEN);
+      } else {
+        ConsoleHelper.printMessage(
+          Tags.ERROR,
+          `TOKEN environment variable is not set properly`
+        );
+        process.exit(1);
+      }
+    } else {
+      try {
+        token = JSON.parse(fs.readFileSync(OAuth2Files.tokenFilePath));
+      } catch (error) {
+        ConsoleHelper.printMessage(
+          Tags.ERROR,
+          `error occurs while trying to access: ${OAuth2Files.tokenFilePath}`,
+          { error, eol: false, date: true }
+        );
+        process.exit(1);
+      }
     }
 
     const { refresh_token, access_token, expiry_date } = token;

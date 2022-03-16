@@ -8,8 +8,16 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
+
     env:
-      TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
+      ACCOUNT: ${{ secrets.ACCOUNT }}
+      CREDENTIALS: ${{ secrets.CREDENTIALS }}
+      FROM: ${{ secrets.FROM }}
+      SUMMARY_DAY: ${{ secrets.SUMMARY_DAY }}
+      SUMMARY_HOUR: ${{ secrets.SUMMARY_HOUR }}
+      TO: ${{ secrets.TO }}
+      TOKEN: ${{ secrets.TOKEN }}
+
     strategy:
       matrix:
         os:
