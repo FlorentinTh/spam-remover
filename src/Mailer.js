@@ -6,12 +6,12 @@ import { OAuth2Files } from './OAuth2.js';
 import { Config } from './utils/Config.js';
 import { Tags, ConsoleHelper } from './helpers/ConsoleHelper.js';
 
-const config = Config.getConfig();
-
 class Mailer {
   #transport;
 
   constructor() {
+    const config = Config.getConfig();
+
     let credentials;
 
     try {
