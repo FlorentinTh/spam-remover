@@ -1,0 +1,50 @@
+{
+  "name": "spam-remover",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/SpamRemover.js",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint ./src --ext .js,.json",
+    "start": "node ./bin/spam-remover.js",
+    "commit": "git-cz",
+    "release": "standard-version",
+    "publish": "git push --follow-tags"
+  },
+  "keywords": [],
+  "author": "FlorentinTh",
+  "license": "MIT",
+  "bin": {
+    "dataset-scanner": "./bin/dataset-scanner.js"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "dayjs": "^1.10.8",
+    "dotenv": "^16.0.0",
+    "googleapis": "^96.0.0",
+    "joi": "^17.6.0",
+    "nodemailer": "^6.7.2"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.10.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0-1",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.5.1",
+    "standard-version": "^9.3.2"
+  }
+}
