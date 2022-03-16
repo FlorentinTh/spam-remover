@@ -25,7 +25,7 @@ class SpamRemover {
         Tags.ERROR,
         `Error while application tries to authenticate`,
         {
-          error: error.response.data.error
+          error: error.message
         }
       );
 
