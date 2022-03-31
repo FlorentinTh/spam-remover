@@ -8,6 +8,7 @@ import { OAuth2 } from './OAuth2.js';
 import Summary from './Summary.js';
 import ProgramHelper from './helpers/ProgramHelper.js';
 import { Tags, ConsoleHelper, EOL } from './helpers/ConsoleHelper.js';
+import TypeHelper from './helpers/TypeHelper.js';
 
 class SpamRemover {
   #userId = 'me';
@@ -111,14 +112,34 @@ class SpamRemover {
 
     for (const id of ids) {
       const email = await this.#gmail.users.messages.get({ userId: this.#userId, id });
-      const from = email.data.payload.headers.filter(header => header.name === 'From')[0]
-        .value;
-      const address = from.match(/<([^<]*)>/gm)[0].replace(/[<{1}>{1}]/gm, '');
-      addresses.push(address);
+
+      const header = email.data.payload.headers.filter(
+        header => header.name === 'From'
+      )[0];
+
+      if (!TypeHelper.isUndefinedOrNull(header)) {
+        let address = header.value;
+        const schema = joi.string().trim().email();
+
+        if (address.includes('<') || address.includes('>')) {
+          address = address.match(/<([^<]*)>/gm)[0].replace(/[<{1}>{1}]/gm, '');
+        }
+
+        const { error } = schema.validate(address);
+
+        if (!error) {
+          addresses.push(address);
+        }
+      } else {
+        ConsoleHelper.printMessage(Tags.WARN, `Error while parsing email address`, {
+          error: JSON.stringify(email)
+        });
+        process.exit(1);
+      }
     }
 
     const data = {
-      datetime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+      date_time: dayjs().format('YYYY-MM-DD HH:mm:ss'),
       addresses
     };
 
@@ -216,7 +237,7 @@ class SpamRemover {
     if (!(process.env.NODE_ENV === 'test')) {
       if (spams.length > 0) {
         await this.#logSpamAddresses(spams, { label: 'spam' });
-        await this.#deleteEmails(spams, { label: 'spam' });
+        // await this.#deleteEmails(spams, { label: 'spam' });
       }
       await this.#summary.sendSummary();
     }
