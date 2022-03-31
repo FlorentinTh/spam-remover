@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+
 import { google } from 'googleapis';
 
 import ProgramHelper from './helpers/ProgramHelper.js';
@@ -51,7 +52,7 @@ export class OAuth2 {
         ConsoleHelper.printMessage(
           Tags.ERROR,
           `error occurs while trying to access: ${OAuth2Files.credentialsFilePath}`,
-          { error, eol: false, date: true }
+          { error: JSON.stringify(error) }
         );
         process.exit(1);
       }
@@ -84,7 +85,7 @@ export class OAuth2 {
         ConsoleHelper.printMessage(
           Tags.ERROR,
           `error occurs while trying to access: ${OAuth2Files.tokenFilePath}`,
-          { error, eol: false, date: true }
+          { error: JSON.stringify(error) }
         );
         process.exit(1);
       }
