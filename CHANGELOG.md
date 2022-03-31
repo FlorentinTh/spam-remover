@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/FlorentinTh/spam-remover/compare/v1.0.2...v1.0.3) (2022-03-31)
+
+
+### Bug Fixes
+
+* **oauth2:** fix parsing error messages ([b30e890](https://github.com/FlorentinTh/spam-remover/commit/b30e890303c5656f04d22cf33b44b541d5c29009))
+* **spam-remover:** add missing condition for test command to prevent deleting spams ([e55253e](https://github.com/FlorentinTh/spam-remover/commit/e55253e99fcc418eed9f4c2a6aaeaece1ec51896))
+* **spam-remover:** fix issue in logSpamAddresses func while parsing email addresses ([6348caa](https://github.com/FlorentinTh/spam-remover/commit/6348caaab0c7e766c778f166f42d8bffcc0388b4))
+
+
+### Chore
+
+* **deps:** update dependencies ([027196e](https://github.com/FlorentinTh/spam-remover/commit/027196ef9f029dd1541c02dc33a182d3f22c7392))
+
 ### [1.0.2](https://github.com/FlorentinTh/spam-remover/compare/v1.0.1...v1.0.2) (2022-03-16)
 
 
