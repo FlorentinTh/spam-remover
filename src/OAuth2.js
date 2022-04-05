@@ -4,8 +4,8 @@ import path from 'path';
 import { google } from 'googleapis';
 
 import ProgramHelper from './helpers/ProgramHelper.js';
-import { Tags, ConsoleHelper } from './helpers/ConsoleHelper.js';
 import TypeHelper from './helpers/TypeHelper.js';
+import { ConsoleHelper, Tags } from './helpers/ConsoleHelper.js';
 
 export class OAuth2Files {
   static #credentialsFilePath = path.join(

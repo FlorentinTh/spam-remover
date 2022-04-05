@@ -5,7 +5,7 @@ import joi from 'joi';
 import { OAuth2Files } from './OAuth2.js';
 import { Config } from './utils/Config.js';
 import TypeHelper from './helpers/TypeHelper.js';
-import { Tags, ConsoleHelper } from './helpers/ConsoleHelper.js';
+import { ConsoleHelper, Tags } from './helpers/ConsoleHelper.js';
 
 class Mailer {
   #transport;
