@@ -9,6 +9,7 @@ import DomainInfos from './utils/DomainInfos.js';
 import Database from './utils/Database.js';
 import Spam from './models/Spam.js';
 import SpamController from './controllers/SpamController.js';
+
 class SpamRemover {
   #userId = 'me';
   #gmail;
