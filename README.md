@@ -31,22 +31,37 @@ $ contrab -e
 
 ## Logging
 
-The application is logging spam addresses each time a cleanup is made by default. You can access it as follows:
+The application is logging spam addresses as well as detailed domain related information from the sending server to a Timescale database.
 
-```sh
-$ cat $HOME/spam-remover/logs/spams.log
-```
+> **Note:** see the [official documentation](https://www.postgresql.org/docs/14/installation.html) to install a self-hosted Postgres instance as well as the [other official documentation](https://docs.timescale.com/install/latest/self-hosted/) to enable Timescale related capabilities.
 
-Logs are formatted in JSON such as:
+SQL commands to make this project works:
 
-```json
-{
-  "datetime":"2022-03-14 18:00:09",
-  "addresses":[
-    "john@doe.com",
-    "jane@doe.com"
-  ]
-}
+```sql
+-- create a dedicated database:
+CREATE DATABASE IF NOT EXISTS spams_remover;
+
+-- enable the use of timescale:
+CREATE EXTENSION IF NOT EXISTS timescaledb;
+
+-- create the required table:
+CREATE TABLE IF NOT EXISTS spams (
+   time     TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+   email    TEXT NOT NULL,
+   ip       TEXT NULL,
+   hostname TEXT NULL,
+   city     TEXT NULL,
+   region   TEXT NULL,
+   country  TEXT NULL,
+   loc      POINT NULL,
+   org      TEXT NULL
+);
+
+-- Enable the hyper table timescale capability:
+SELECT create_hypertable('spams','time');
+
+-- To import previous exported data formatted in CSV:
+\copy spams (time, email, ip, hostname, city, region, country, loc, org) from './spams.csv' WITH DELIMITER ';' CSV HEADER;
 ```
 
 ## License
