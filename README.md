@@ -41,7 +41,7 @@ The application is logging spam addresses as well as detailed domain related inf
 
 > **Note:** see the [official documentation](https://www.postgresql.org/docs/14/installation.html) to install a self-hosted Postgres instance as well as the [other official documentation](https://docs.timescale.com/install/latest/self-hosted/) to enable Timescale related capabilities.
 
-SQL commands to make this project works:
+SQL commands to make this project work:
 
 ```sql
 -- create a dedicated database:
