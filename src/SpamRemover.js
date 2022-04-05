@@ -1,15 +1,14 @@
-import path from 'path';
-import fs from 'fs';
 import { google } from 'googleapis';
 import joi from 'joi';
-import dayjs from 'dayjs';
 
 import { OAuth2 } from './OAuth2.js';
 import Summary from './Summary.js';
-import ProgramHelper from './helpers/ProgramHelper.js';
-import { Tags, ConsoleHelper, EOL } from './helpers/ConsoleHelper.js';
-import TypeHelper from './helpers/TypeHelper.js';
-
+import { ConsoleHelper, EOL, Tags } from './helpers/ConsoleHelper.js';
+import MailHelper from './helpers/MailHelper.js';
+import DomainInfos from './helpers/DomainInfos.js';
+import Database from './utils/Database.js';
+import Spam from './models/Spam.js';
+import SpamController from './controllers/SpamController.js';
 class SpamRemover {
   #userId = 'me';
   #gmail;
@@ -108,72 +107,36 @@ class SpamRemover {
       process.exit(1);
     }
 
-    const addresses = [];
+    const database = new Database();
+    const client = await database.connect({ sshTunnel: true });
 
     for (const id of ids) {
       const email = await this.#gmail.users.messages.get({ userId: this.#userId, id });
+      const headers = email.data.payload.headers;
 
-      const header = email.data.payload.headers.filter(
-        header => header.name === 'From'
-      )[0];
+      const from = await MailHelper.getFromFieldFromHeaders(headers);
+      const time = await MailHelper.getDateFieldFromHeaders(headers);
 
-      if (!TypeHelper.isUndefinedOrNull(header)) {
-        let address = header.value;
-        const schema = joi.string().trim().email();
+      const domainInfos = new DomainInfos(from);
+      const infos = await domainInfos.getInfos();
 
-        if (address.includes('<') || address.includes('>')) {
-          address = address.match(/<([^<]*)>/gm)[0].replace(/[<{1}>{1}]/gm, '');
-        }
-
-        const { error } = schema.validate(address);
-
-        if (!error) {
-          addresses.push(address);
-        }
-      } else {
-        ConsoleHelper.printMessage(Tags.WARN, `Error while parsing email address`, {
-          error: JSON.stringify(email)
-        });
-        process.exit(1);
-      }
-    }
-
-    const data = {
-      date_time: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-      addresses
-    };
-
-    const logFilePath = path.join(ProgramHelper.getRootPath(), 'logs', 'spams.log');
-    const baseDir = path.parse(logFilePath).dir;
-
-    try {
-      await fs.promises.mkdir(baseDir, { recursive: true });
-    } catch (error) {
-      ConsoleHelper.printMessage(
-        Tags.ERROR,
-        `Error occurs while trying to write spam addresses log`,
-        {
-          error: error.message
-        }
+      const spam = new Spam(
+        time,
+        from,
+        infos?.ip || null,
+        infos?.hostname || null,
+        infos?.city || null,
+        infos?.region || null,
+        infos?.country || null,
+        infos?.loc || null,
+        infos?.org || null
       );
-      process.exit(1);
+
+      const spamController = new SpamController(client);
+      await spamController.createSpam(spam);
     }
 
-    try {
-      await fs.promises.writeFile(logFilePath, JSON.stringify(data) + '\n', {
-        flag: 'a',
-        encoding: 'utf-8'
-      });
-    } catch (error) {
-      ConsoleHelper.printMessage(
-        Tags.ERROR,
-        `Error occurs while trying to write spam addresses log`,
-        {
-          error: error.message
-        }
-      );
-      process.exit(1);
-    }
+    await database.close();
   }
 
   async #deleteEmails(ids, params = { label: null }) {
@@ -217,8 +180,6 @@ class SpamRemover {
     }
 
     if (batchDelete.status === 204) {
-      await this.#summary.updateSummaryData({ data: ids.length });
-
       let msg = `${ids.length} ${params.label.toLowerCase()} email`;
 
       if (ids.length > 1) {
