@@ -23,9 +23,15 @@ Clean Gmail account from spam messages that keep stacking in your mailbox.
 You can use this project as a cron job. The example below shows how to run automatically the cleanup forever at every hour and log the output in a dedicated file.
 
 ```sh
+# get the location of node binaries:
+$ which node
+> /usr/bin/node
+
+# edit crontab file:
 $ contrab -e
 
-# add:
+# add the following lines to the end of the file:
+PATH=$PATH:/usr/bin/
 0 * * * * node $HOME/spam-remover/bin/spam-remover.js >> $HOME/spam-remover/logs/spam-remover.log 2>&1
 ```
 
