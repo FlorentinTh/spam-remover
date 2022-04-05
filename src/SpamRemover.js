@@ -5,7 +5,7 @@ import { OAuth2 } from './OAuth2.js';
 import Summary from './Summary.js';
 import { ConsoleHelper, EOL, Tags } from './helpers/ConsoleHelper.js';
 import MailHelper from './helpers/MailHelper.js';
-import DomainInfos from './helpers/DomainInfos.js';
+import DomainInfos from './utils/DomainInfos.js';
 import Database from './utils/Database.js';
 import Spam from './models/Spam.js';
 import SpamController from './controllers/SpamController.js';
