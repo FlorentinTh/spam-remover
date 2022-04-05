@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/FlorentinTh/spam-remover/compare/v1.1.0...v1.1.1) (2022-04-05)
+
+
+### Bug Fixes
+
+* **config:** fix improper call of config in Database and DomainInfos ([8388344](https://github.com/FlorentinTh/spam-remover/commit/83883441cdf98d5e73b37f7ed857687721d0e085))
+
+
+### Refactors
+
+* **domain-infos:** move domain-infos from helpers to utils ([ef4fc81](https://github.com/FlorentinTh/spam-remover/commit/ef4fc81e3f67d69b91a4154deb1db4a10c4e5ca5))
+* **spam-remover:** fix DomainInfos import ([bd83cfa](https://github.com/FlorentinTh/spam-remover/commit/bd83cfab3d79fe94f2b7430cd79d0f5e8be63233))
+
 ## [1.1.0](https://github.com/FlorentinTh/spam-remover/compare/v1.0.3...v1.1.0) (2022-04-05)
 
 
