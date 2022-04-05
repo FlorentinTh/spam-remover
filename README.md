@@ -70,6 +70,8 @@ SELECT create_hypertable('spams','time');
 \copy spams (time, email, ip, hostname, city, region, country, loc, org) from './spams.csv' WITH DELIMITER ';' CSV HEADER;
 ```
 
+A sample of data can be found in ```data/spams.csv```.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
