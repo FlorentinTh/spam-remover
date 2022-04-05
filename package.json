@@ -30,9 +30,13 @@
     "chalk": "^5.0.1",
     "dayjs": "^1.11.0",
     "dotenv": "^16.0.0",
-    "googleapis": "^99.0.0",
+    "googleapis": "^100.0.0",
     "joi": "^17.6.0",
-    "nodemailer": "^6.7.3"
+    "node-ipinfo": "^3.0.2",
+    "nodemailer": "^6.7.3",
+    "pg": "^8.7.3",
+    "promisify-child-process": "^4.1.1",
+    "ssh2-promise": "^1.0.2"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
@@ -42,11 +46,12 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0-1",
     "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-n": "^15.1.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "pre-commit": "^1.2.2",
-    "prettier": "^2.6.1",
+    "prettier": "^2.6.2",
     "standard-version": "^9.3.2"
   }
 }
