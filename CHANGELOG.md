@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/FlorentinTh/spam-remover/compare/v1.0.3...v1.1.0) (2022-04-05)
+
+
+### Features
+
+* **database:** add database logging support and remove file logging ([16498e1](https://github.com/FlorentinTh/spam-remover/commit/16498e1f67dd38e77d2d5eb01573641d0a9d5a33))
+
+
+### Refactors
+
+* **data:** remove no longer required data example folder ([974a6d6](https://github.com/FlorentinTh/spam-remover/commit/974a6d6134186a7269939708a5e5dbe0c32490b8))
+* **imports:** update imports order ([479c8ca](https://github.com/FlorentinTh/spam-remover/commit/479c8ca620767b5969fa0863264e084ebe58e8ea))
+
+
+### Documentation
+
+* **readme:** update documentation in readme file ([2ba0bbe](https://github.com/FlorentinTh/spam-remover/commit/2ba0bbe3e0ecdab8190832e7dfe8f64906964c79))
+
+
+### Chore
+
+* **deps:** add new dependencies and update existing ones ([020e5b4](https://github.com/FlorentinTh/spam-remover/commit/020e5b44d2e190c74f0f6e1183eb846dff93b64a))
+
 ### [1.0.3](https://github.com/FlorentinTh/spam-remover/compare/v1.0.2...v1.0.3) (2022-03-31)
 
 
