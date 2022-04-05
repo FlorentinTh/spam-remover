@@ -5,8 +5,6 @@ import pg from 'pg';
 import { Config } from '../utils/Config.js';
 import { ConsoleHelper, Tags } from '../helpers/ConsoleHelper.js';
 
-const config = Config.getConfig();
-
 class Database {
   #client;
 
@@ -15,6 +13,8 @@ class Database {
   }
 
   async connect(options = { sshTunnel: true }) {
+    const config = Config.getConfig();
+
     const defaultOptions = { sshTunnel: true };
     options = {
       ...defaultOptions,
