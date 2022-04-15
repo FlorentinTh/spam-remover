@@ -3,9 +3,9 @@ import nodemailer from 'nodemailer';
 import joi from 'joi';
 
 import { OAuth2Files } from './OAuth2.js';
-import { Config } from './utils/Config.js';
-import TypeHelper from './helpers/TypeHelper.js';
-import { ConsoleHelper, Tags } from './helpers/ConsoleHelper.js';
+import { Config } from './Config.js';
+import TypeHelper from '../helpers/TypeHelper.js';
+import { ConsoleHelper, Tags } from '../helpers/ConsoleHelper.js';
 
 class Mailer {
   #transport;
