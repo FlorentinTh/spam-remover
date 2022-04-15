@@ -1,7 +1,7 @@
 import { google } from 'googleapis';
 import joi from 'joi';
 
-import { OAuth2 } from './OAuth2.js';
+import { OAuth2 } from './utils/OAuth2.js';
 import Summary from './Summary.js';
 import { ConsoleHelper, EOL, Tags } from './helpers/ConsoleHelper.js';
 import MailHelper from './helpers/MailHelper.js';
@@ -129,7 +129,8 @@ class SpamRemover {
         infos?.city || null,
         infos?.region || null,
         infos?.country || null,
-        infos?.loc || null,
+        infos?.loc.split(',')[0] || null,
+        infos?.loc.split(',')[1] || null,
         infos?.org || null
       );
 
@@ -199,7 +200,7 @@ class SpamRemover {
     if (!(process.env.NODE_ENV === 'test')) {
       if (spams.length > 0) {
         await this.#logSpamAddresses(spams, { label: 'spam' });
-        // await this.#deleteEmails(spams, { label: 'spam' });
+        await this.#deleteEmails(spams, { label: 'spam' });
       }
       await this.#summary.sendSummary();
     }

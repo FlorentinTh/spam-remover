@@ -10,8 +10,9 @@ class Spam {
   #city;
   #region;
   #country;
-  #loc;
-  #org;
+  #locationLatitude;
+  #locationLongitude;
+  #organization;
 
   get time() {
     return this.#time;
@@ -41,15 +42,30 @@ class Spam {
     return this.#country;
   }
 
-  get loc() {
-    return this.#loc === null ? null : `(${this.#loc})`;
+  get locationLatitude() {
+    return this.#locationLatitude;
+  }
+
+  get locationLongitude() {
+    return this.#locationLongitude;
   }
 
   get org() {
-    return this.#org;
+    return this.#organization;
   }
 
-  constructor(time, email, ip, hostname, city, region, country, loc, org) {
+  constructor(
+    time,
+    email,
+    ip,
+    hostname,
+    city,
+    region,
+    country,
+    locationLatitude,
+    locationLongitude,
+    organization
+  ) {
     this.#validate({
       time,
       email,
@@ -58,8 +74,9 @@ class Spam {
       city,
       region,
       country,
-      loc,
-      org
+      locationLatitude,
+      locationLongitude,
+      organization
     });
 
     this.#time = time;
@@ -69,8 +86,9 @@ class Spam {
     this.#city = city;
     this.#region = region;
     this.#country = country;
-    this.#loc = loc;
-    this.#org = org;
+    this.#locationLatitude = locationLatitude;
+    this.#locationLongitude = locationLongitude;
+    this.#organization = organization;
   }
 
   #validate(spam) {
@@ -82,8 +100,9 @@ class Spam {
       city: joi.string().trim().required().allow(null),
       region: joi.string().trim().required().allow(null),
       country: joi.string().trim().required().allow(null),
-      loc: joi.string().trim().required().allow(null),
-      org: joi.string().trim().required().allow(null)
+      locationLatitude: joi.string().trim().required().allow(null),
+      locationLongitude: joi.string().trim().required().allow(null),
+      organization: joi.string().trim().required().allow(null)
     });
 
     const { error } = schema.validate(spam);
