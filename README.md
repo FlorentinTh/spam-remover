@@ -48,26 +48,32 @@ SQL commands to make this project work:
 CREATE DATABASE IF NOT EXISTS spams_remover;
 
 -- enable the use of timescale:
-CREATE EXTENSION IF NOT EXISTS timescaledb;
+CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;
+
+-- set your timezone. For example:
+SET timezone = 'America/Montreal';
 
 -- create the required table:
 CREATE TABLE IF NOT EXISTS spams (
-   time     TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-   email    TEXT NOT NULL,
-   ip       TEXT NULL,
-   hostname TEXT NULL,
-   city     TEXT NULL,
-   region   TEXT NULL,
-   country  TEXT NULL,
-   loc      POINT NULL,
-   org      TEXT NULL
+   time               TIMESTAMPTZ NOT NULL,
+   email              TEXT NOT NULL,
+   ip                 TEXT NULL,
+   hostname           TEXT NULL,
+   city               TEXT NULL,
+   region             TEXT NULL,
+   country            TEXT NULL,
+   location_latitude  NUMERIC NULL,
+   location_longitude NUMERIC NULL,
+   organization       TEXT NULL
 );
 
--- Enable the hyper table timescale capability:
+
+-- Enable the hyper table capability of timescale:
 SELECT create_hypertable('spams','time');
 
 -- To import previous exported data formatted in CSV:
-\copy spams (time, email, ip, hostname, city, region, country, loc, org) from './spams.csv' WITH DELIMITER ';' CSV HEADER;
+\copy spams(time, email, ip, hostname, city, region, country, location_latitude, location_longitude, organization)
+      from './spams.csv' WITH DELIMITER ';' CSV HEADER;
 ```
 
 A sample of data can be found in ```data/spams.csv```.
