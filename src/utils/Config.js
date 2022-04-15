@@ -36,6 +36,7 @@ const defaultValidationSchema = joi
         ]
       }),
     SUMMARY_HOUR: joi.number().integer().required().min(0).max(23),
+    GRAFANA_URL: joi.string().trim().uri().optional(),
     IP_INFOS_TOKEN: joi.string().trim().required(),
     DB_USER: joi.string().trim().required(),
     DB_PASSWORD: joi.string().trim().required(),
@@ -69,12 +70,13 @@ export class Config {
     return {
       account: env.ACCOUNT,
       email: {
-        FROM: env.FROM,
-        TO: env.TO
+        from: env.FROM,
+        to: env.TO
       },
       summary: {
-        DAY: env.SUMMARY_DAY.toLowerCase(),
-        HOUR: env.SUMMARY_HOUR
+        day: env.SUMMARY_DAY.toLowerCase(),
+        hour: env.SUMMARY_HOUR,
+        grafana_url: env.GRAFANA_URL
       },
       ip_infos: {
         token: env.IP_INFOS_TOKEN

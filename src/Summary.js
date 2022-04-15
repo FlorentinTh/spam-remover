@@ -4,7 +4,7 @@ import { Config } from './utils/Config.js';
 import DateHelper from './helpers/DateHelper.js';
 import Database from './utils/Database.js';
 import SpamController from './controllers/SpamController.js';
-import Mailer from './Mailer.js';
+import Mailer from './utils/Mailer.js';
 import { ConsoleHelper, EOL, Tags } from './helpers/ConsoleHelper.js';
 
 class Summary {
@@ -12,10 +12,10 @@ class Summary {
     const config = Config.getConfig();
     const todayDay = dayjs().day();
 
-    if (DateHelper.getDayNumber(config.summary.DAY) === todayDay) {
+    if (DateHelper.getDayNumber(config.summary.day) === todayDay) {
       const currentHour = dayjs().hour();
 
-      if (config.summary.HOUR === currentHour) {
+      if (config.summary.hour === currentHour) {
         const database = new Database();
         const client = await database.connect({ sshTunnel: true });
 
@@ -28,12 +28,12 @@ class Summary {
 
         const mailer = new Mailer();
         await mailer.sendMail({
-          from: config.email.FROM,
-          to: config.email.TO,
+          from: config.email.from,
+          to: config.email.to,
           subject: `Weekly Summary Report`,
           html: `<div style="font-size: 16px;font-family: 'Arial';">
                   <p>This week, <strong>${total} spam email${plural}</strong> have been successfully deleted.</p>
-                  <p>Complete and detailed logs are available if you need more insight on spam addresses that have been removed.</p>
+                  <p>Complete and detailed data are available in the <a href='${config.summary.grafana_url}'>Grafana dashboard</a> if you need more insight.</p>
               </div>`
         });
 
