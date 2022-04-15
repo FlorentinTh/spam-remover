@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/FlorentinTh/spam-remover/compare/v1.1.1...v1.2.0) (2022-04-15)
+
+
+### Features
+
+* **summary:** add url to grafana dashboard in summary email content ([b4f6269](https://github.com/FlorentinTh/spam-remover/commit/b4f626930d6a19afb0b439cce36e2d1371a7cabd))
+
+
+### Styling
+
+* **spam-remover:** add a missing line break ([d5474b5](https://github.com/FlorentinTh/spam-remover/commit/d5474b573403823d2085a99ccfcb7cb1752eded7))
+
+
+### Refactors
+
+* **spam-remover:** change model definition to better handle location lat and long in DB ([dde2bf4](https://github.com/FlorentinTh/spam-remover/commit/dde2bf40101ccea9deabd25a5420bee721b60a67))
+* **utils:** move Mailer and OAuth2 classes to utils folder ([0b02901](https://github.com/FlorentinTh/spam-remover/commit/0b029011ac50358a08781fcdc61651f661234d84))
+
+
+### Documentation
+
+* **.env.example:** update .env.example to match new configuration ([5e03c91](https://github.com/FlorentinTh/spam-remover/commit/5e03c914d56f73f5a506258d23c3e3c334408485))
+* **readme:** fix a typo in readme file ([73c300e](https://github.com/FlorentinTh/spam-remover/commit/73c300edbd99829a133e12b005ca0fc10f379076))
+* **readme:** update documentation in readme ([617ddbc](https://github.com/FlorentinTh/spam-remover/commit/617ddbcc2b1351692d9e9f5424ce11107e0cc41e))
+* **readme:** update readme to reflect changes in data definition ([8a1be03](https://github.com/FlorentinTh/spam-remover/commit/8a1be03e3845d4d59cbb11b97a08fd6e5a1b28dc))
+
+
+### Chore
+
+* **data:** add a seed of data ([e0342b6](https://github.com/FlorentinTh/spam-remover/commit/e0342b6ecb44f82900854be291b8bcb92287699f))
+* **data:** update sample of data to reflect previous changes in the model definition ([4ccce1c](https://github.com/FlorentinTh/spam-remover/commit/4ccce1cd4b1dfb3a7e9ebc054500ee927384af1b))
+* **eslint:** remove no more usefull packages related to eslint config ([630af3a](https://github.com/FlorentinTh/spam-remover/commit/630af3af1cb6eb2b86cee4d8f4fb94a699fcce07))
+
 ### [1.1.1](https://github.com/FlorentinTh/spam-remover/compare/v1.1.0...v1.1.1) (2022-04-05)
 
 
