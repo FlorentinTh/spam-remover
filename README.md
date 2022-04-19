@@ -78,6 +78,12 @@ SELECT create_hypertable('spams','time');
 
 A sample of data can be found in ```data/spams.csv```.
 
+## Visualization
+
+It is possible to visualize the data stored in the Timescale database through a custom Grafana dashboard. To set up a Grafana instance and link your Timescale database to it, you should refer to the [official documentation](https://docs.timescale.com/timescaledb/latest/tutorials/grafana/#getting-started-with-grafana-and-timescaledb). An example of a custom dashboard, shown as follows, is provided in ```grafana/dashboard.json```.
+
+![Dashboard](./grafana/img/screenshot.jpg)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
