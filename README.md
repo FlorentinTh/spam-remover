@@ -64,15 +64,15 @@ CREATE TABLE IF NOT EXISTS spams (
    country            TEXT NULL,
    location_latitude  NUMERIC NULL,
    location_longitude NUMERIC NULL,
-   organization       TEXT NULL
+   organization       TEXT NULL,
+   is_email_valid     BOOLEAN NOT NULL
 );
-
 
 -- Enable the hyper table capability of timescale:
 SELECT create_hypertable('spams','time');
 
 -- To import previous exported data formatted in CSV:
-\copy spams(time, email, ip, hostname, city, region, country, location_latitude, location_longitude, organization)
+\copy spams(time, email, ip, hostname, city, region, country, location_latitude, location_longitude, organization, is_email_valid)
       from './spams.csv' WITH DELIMITER ';' CSV HEADER;
 ```
 
