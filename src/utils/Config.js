@@ -9,6 +9,7 @@ dotenv.config({ path: path.join(ProgramHelper.getRootPath(), '.env') });
 
 const defaultValidationSchema = joi
   .object({
+    TZ: joi.string().trim().required(),
     ACCOUNT: joi
       .string()
       .trim()
@@ -68,6 +69,7 @@ export class Config {
     }
 
     return {
+      timezone: env.TZ,
       account: env.ACCOUNT,
       email: {
         from: env.FROM,

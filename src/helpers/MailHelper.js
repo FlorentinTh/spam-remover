@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc.js';
 import timezone from 'dayjs/plugin/timezone.js';
 
+import { Config } from '../utils/Config.js';
 import TypeHelper from './TypeHelper.js';
 import { ConsoleHelper, Tags } from './ConsoleHelper.js';
 
@@ -51,6 +52,8 @@ class MailHelper {
       ConsoleHelper.printMessage(Tags.ERROR, `header parameter must be an array`);
     }
 
+    const config = Config.getConfig();
+
     const dateReceived = headers
       .filter(header => header.name === 'X-Received')[0]
       .value.split(';')[1]
@@ -62,7 +65,7 @@ class MailHelper {
     return dayjs
       .utc(dateReceived)
       .local()
-      .tz('America/Montreal')
+      .tz(config.timezone)
       .format('YYYY-MM-DD HH:mm:ss');
   }
 }
