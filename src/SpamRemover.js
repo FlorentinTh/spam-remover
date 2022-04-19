@@ -115,11 +115,15 @@ class SpamRemover {
       const email = await this.#gmail.users.messages.get({ userId: this.#userId, id });
       const headers = email.data.payload.headers;
 
-      const from = await MailHelper.getFromFieldFromHeaders(headers);
+      const { from, isValid } = await MailHelper.getFromFieldFromHeaders(headers);
       const time = await MailHelper.getDateFieldFromHeaders(headers);
 
-      const domainInfos = new DomainInfos(from);
-      const infos = await domainInfos.getInfos();
+      let infos = null;
+
+      if (isValid) {
+        const domainInfos = new DomainInfos(from);
+        infos = await domainInfos.getInfos();
+      }
 
       const spam = new Spam(
         time,
@@ -131,7 +135,8 @@ class SpamRemover {
         infos?.country || null,
         infos?.loc.split(',')[0] || null,
         infos?.loc.split(',')[1] || null,
-        infos?.org || null
+        infos?.org || null,
+        isValid
       );
 
       const spamController = new SpamController(client);

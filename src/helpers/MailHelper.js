@@ -23,14 +23,26 @@ class MailHelper {
       const schema = joi.string().trim().email();
       const { error } = schema.validate(address);
 
-      if (!error) {
-        return address;
+      let isValid;
+
+      if (error) {
+        ConsoleHelper.printMessage(
+          Tags.WARN,
+          `Error while parsing email address: ${error._original}`,
+          {
+            error: error.details[0].message
+          }
+        );
+
+        isValid = false;
       } else {
-        ConsoleHelper.printMessage(Tags.WARN, `Error while parsing email address`, {
-          error: JSON.stringify(error)
-        });
-        process.exit(1);
+        isValid = !error;
       }
+
+      return {
+        from: address,
+        isValid
+      };
     }
   }
 

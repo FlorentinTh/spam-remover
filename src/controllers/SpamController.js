@@ -29,8 +29,8 @@ class SpamController {
       process.exit(1);
     }
 
-    const query = `INSERT INTO ${TABLE}(time, email, ip, hostname, city, region, country, location_latitude, location_longitude, organization)
-                   VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`;
+    const query = `INSERT INTO ${TABLE}(time, email, ip, hostname, city, region, country, location_latitude, location_longitude, organization, is_email_valid)
+                   VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`;
     const values = [
       spam.time,
       spam.email,
@@ -41,7 +41,8 @@ class SpamController {
       spam.country,
       spam.locationLatitude,
       spam.locationLongitude,
-      spam.organization
+      spam.organization,
+      spam.isEmailValid.toString()
     ];
 
     try {

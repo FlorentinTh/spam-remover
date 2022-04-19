@@ -13,6 +13,7 @@ class Spam {
   #locationLatitude;
   #locationLongitude;
   #organization;
+  #isEmailValid;
 
   get time() {
     return this.#time;
@@ -50,8 +51,12 @@ class Spam {
     return this.#locationLongitude;
   }
 
-  get org() {
+  get organization() {
     return this.#organization;
+  }
+
+  get isEmailValid() {
+    return this.#isEmailValid;
   }
 
   constructor(
@@ -64,7 +69,8 @@ class Spam {
     country,
     locationLatitude,
     locationLongitude,
-    organization
+    organization,
+    isEmailValid
   ) {
     this.#validate({
       time,
@@ -76,7 +82,8 @@ class Spam {
       country,
       locationLatitude,
       locationLongitude,
-      organization
+      organization,
+      isEmailValid
     });
 
     this.#time = time;
@@ -89,6 +96,7 @@ class Spam {
     this.#locationLatitude = locationLatitude;
     this.#locationLongitude = locationLongitude;
     this.#organization = organization;
+    this.#isEmailValid = isEmailValid;
   }
 
   #validate(spam) {
@@ -102,7 +110,8 @@ class Spam {
       country: joi.string().trim().required().allow(null),
       locationLatitude: joi.string().trim().required().allow(null),
       locationLongitude: joi.string().trim().required().allow(null),
-      organization: joi.string().trim().required().allow(null)
+      organization: joi.string().trim().required().allow(null),
+      isEmailValid: joi.boolean().sensitive().required()
     });
 
     const { error } = schema.validate(spam);
