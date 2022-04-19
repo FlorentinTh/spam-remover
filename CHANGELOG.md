@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/FlorentinTh/spam-remover/compare/v1.2.0...v2.0.0) (2022-04-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **env:** TZ environment variable is now required
+* **log-spam-addresses:** column is_email_valid was added to the database schema
+
+### Features
+
+* **env:** change hardcoded timestamp in MailHelper class to an environment variable ([b9454ba](https://github.com/FlorentinTh/spam-remover/commit/b9454bace5f72f6305815d5c2559a0c5577b55cc))
+
+
+### Bug Fixes
+
+* **log-spam-addresses:** fix the issue when a spam email addresses were invalid ([d73e7f0](https://github.com/FlorentinTh/spam-remover/commit/d73e7f0692c80154fb9f9bbd1d1b9c638ed5b8a0))
+
+
+### Chore
+
+* **data:** update data file according to changes made to the database schema ([4d61042](https://github.com/FlorentinTh/spam-remover/commit/4d61042025b4ab05b6308dd26efddcb98addc423))
+
+
+### CI
+
+* **build:** remove ci-build on windows instances and remove no longer required env variables ([1c26313](https://github.com/FlorentinTh/spam-remover/commit/1c26313c635a5c77d4bbe2fdbbf292305dacdd8c))
+
+
+### Documentation
+
+* **.env:** update .env.example according to changes made as regards adding a TZ variable ([cfffeb8](https://github.com/FlorentinTh/spam-remover/commit/cfffeb8ff7dcfe23a253a45a6660d65963e37cbc))
+* **readme:** update readme according to previous commit ([0ac66bd](https://github.com/FlorentinTh/spam-remover/commit/0ac66bd7c1e674ff00990ef5f8869b8b27575ef1))
+* **readme:** update readme to add a platform badge ([42478d7](https://github.com/FlorentinTh/spam-remover/commit/42478d7539ab0b5d7b8665635dbd8c02c3ca0c8c))
+* **visualization:** update documentation to add a vizualization section as well as required files ([161a131](https://github.com/FlorentinTh/spam-remover/commit/161a13126fb880fda47e6ec1ef591db259f51afd))
+
 ## [1.2.0](https://github.com/FlorentinTh/spam-remover/compare/v1.1.1...v1.2.0) (2022-04-15)
 
 
