@@ -1,6 +1,6 @@
 # spam-remover
 
-![node](https://img.shields.io/badge/node-%3E%3D16-blue) [![License](https://img.shields.io/github/license/FlorentinTh/spam-remover)](https://github.com/FlorentinTh/spam-remover/blob/master/LICENSE) [![snyk](https://github.com/FlorentinTh/spam-remover/actions/workflows/dependencies.yml/badge.svg)](https://github.com/FlorentinTh/spam-remover/actions/workflows/dependencies.yml) [![build](https://github.com/FlorentinTh/spam-remover/actions/workflows/build.yml/badge.svg)](https://github.com/FlorentinTh/spam-remover/actions/workflows/build.yml) [![GitHub Release](https://img.shields.io/github/release/FlorentinTh/spam-remover)](https://github.com/FlorentinTh/spam-remover/releases)
+![platform](https://img.shields.io/badge/platform-linux%20%7C%20osx%20-lightgrey) ![node](https://img.shields.io/badge/node-%3E%3D16-blue) [![License](https://img.shields.io/github/license/FlorentinTh/spam-remover)](https://github.com/FlorentinTh/spam-remover/blob/master/LICENSE) [![snyk](https://github.com/FlorentinTh/spam-remover/actions/workflows/dependencies.yml/badge.svg)](https://github.com/FlorentinTh/spam-remover/actions/workflows/dependencies.yml) [![build](https://github.com/FlorentinTh/spam-remover/actions/workflows/build.yml/badge.svg)](https://github.com/FlorentinTh/spam-remover/actions/workflows/build.yml) [![GitHub Release](https://img.shields.io/github/release/FlorentinTh/spam-remover)](https://github.com/FlorentinTh/spam-remover/releases)
 
 Clean Gmail account from spam messages that keep stacking in your mailbox.
 
