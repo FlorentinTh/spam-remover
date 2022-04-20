@@ -5,7 +5,7 @@
   "main": "src/SpamRemover.js",
   "type": "module",
   "scripts": {
-    "lint": "eslint ./src --ext .js,.json",
+    "lint": "eslint ./src ./bin --ext .js,.json",
     "test": "cross-env NODE_ENV=test node ./bin/spam-remover.js",
     "start": "node ./bin/spam-remover.js",
     "commit": "git-cz",
@@ -43,10 +43,18 @@
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
     "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "pre-commit": "^1.2.2",
     "prettier": "^2.6.2",
     "standard-version": "^9.3.2"
+  },
+  "overrides": {
+    "cz-conventional-changelog": {
+      "commitizen": "^4.2.4",
+      "cz-conventional-changelog": "^3.3.0",
+      "minimist": "^1.2.6"
+    }
   }
 }
