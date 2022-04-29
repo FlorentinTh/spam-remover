@@ -2,7 +2,7 @@
   "name": "spam-remover",
   "version": "2.0.1",
   "description": "",
-  "main": "src/SpamRemover.js",
+  "main": "bin/spam-remover.js",
   "type": "module",
   "scripts": {
     "lint": "eslint ./src ./bin --ext .js,.json",
@@ -33,7 +33,7 @@
     "googleapis": "^100.0.0",
     "joi": "^17.6.0",
     "node-ipinfo": "^3.0.2",
-    "nodemailer": "^6.7.3",
+    "nodemailer": "^6.7.4",
     "pg": "^8.7.3",
     "promisify-child-process": "^4.1.1",
     "ssh2-promise": "^1.0.2"
@@ -41,7 +41,7 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.13.0",
+    "eslint": "^8.14.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-json": "^3.1.0",
@@ -51,8 +51,8 @@
     "standard-version": "^9.3.2"
   },
   "overrides": {
-      "commitizen": "^4.2.4",
-      "cz-conventional-changelog": "^3.3.0",
-      "minimist": "^1.2.6"
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "minimist": "^1.2.6"
   }
 }
