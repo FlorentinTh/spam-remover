@@ -34,7 +34,7 @@
     "joi": "^17.6.0",
     "node-ipinfo": "^3.1.0",
     "nodemailer": "^6.7.5",
-    "pg": "^8.7.3",
+    "pg": "^8.9.0",
     "promisify-child-process": "^4.1.1",
     "ssh2-promise": "^1.0.3"
   },
